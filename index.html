@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="gl">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Eurovisión 2025 - ¡Próximamente!</title>
+  <title>Eurovisión 2025 - Próximamente!</title>
   <style>
     body {
       margin: 0;
@@ -31,6 +31,15 @@
       margin-bottom: 1rem;
       animation: pulse 2s infinite;
     }
+    .preview {
+      margin: 20px 0;
+    }
+    embed {
+      width: 250px;
+      height: 350px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
     @keyframes pulse {
       0% { transform: scale(1); opacity: 1; }
       50% { transform: scale(1.1); opacity: 0.9; }
@@ -40,8 +49,14 @@
 </head>
 <body>
   <div class="logo">🎤✨</div>
-  <h1>¡Eurovisión 2025 está en camino!</h1>
-  <p>Estamos trabajando en una experiencia interactiva para que tú y tus amigos votéis como auténticos jurados. Pronto podréis crear vuestro ranking, sumar puntos en grupo, ¡y mucho más!</p>
-  <p>Vuelve pronto. ¡La fiesta está a punto de comenzar! 🎶</p>
+  <h1>¡Eurovisión 2025 está ao caer!</h1>
+  <p>Estamos a traballar nunha experiencia interactiva para que ti e os teus amigos votedes coma un xurado profesional. Moi pronto poderedes crear o voso ranking, sumar puntos en grupo e moito máis!</p>
+
+  <div class="preview">
+    <!-- Substitúe "cartaz.pdf" polo nome real do arquivo PDF que queiras mostrar -->
+    <embed src="cartaz.pdf" type="application/pdf" />
+  </div>
+
+  <p>Volve axiña. A festa está a piques de comezar! 🎶</p>
 </body>
 </html>
