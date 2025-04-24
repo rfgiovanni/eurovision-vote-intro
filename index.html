@@ -14,10 +14,23 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      min-height: 100vh; /* Cambiado height por min-height */
       text-align: center;
       padding: 1rem;
+      box-sizing: border-box; /* Asegura que el padding no afecte al tamaño total */
     }
+    
+    /* Contenedor principal para dar espacio al footer */
+    .main-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      flex: 1;
+      width: 100%;
+      padding-top: 2rem; /* Añadir espacio arriba para los emojis */
+    }
+    
     h1 {
       font-size: 2.5rem;
       margin-bottom: 0.5rem;
@@ -30,6 +43,7 @@
       font-size: 3rem;
       margin-bottom: 1rem;
       animation: pulse 2s infinite;
+      padding-top: 1rem; /* Espacio adicional arriba para evitar cortes */
     }
     .preview {
       margin: 20px 0;
@@ -51,36 +65,43 @@
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     }
     footer {
-      position: relative;
-      margin-top: 20px;
+      width: 100%;
+      margin-top: 2rem;
+      padding: 1rem 0;
       font-size: 0.9rem;
       color: rgba(255, 255, 255, 0.6);
+      /* Eliminado el position: relative que podría causar problemas */
     }
-
   </style>
 </head>
 <body>
-  <div class="logo">🎤✨</div>
-  <h1>Eurovisión 2025 está ao caer!</h1>
-  <p>Estamos a traballar nunha experiencia interactiva para que ti e os teus amigos votedes coma un xurado profesional. Moi pronto poderedes crear a vosa clasificación, sumar puntos en grupo e moito máis!</p>
+  <div class="main-content">
+    <div class="logo">🎤✨</div>
+    <h1>Eurovisión 2025 está ao caer!</h1>
+    <p>Estamos a traballar nunha experiencia interactiva para que ti e os teus amigos votedes coma un xurado profesional. Moi pronto poderedes crear a vosa clasificación, sumar puntos en grupo e moito máis!</p>
 
-  <p> ¿Xa tes a túa entrada? </p>
+    <p>¿Xa tes a túa entrada?</p>
 
-  <div class="preview">
-    <!-- Cambia "cartaz.jpg" por el nombre real de tu archivo -->
-    <img src="cartaz.jpg" alt="Cartaz Eurovisión" />
+    <div class="preview">
+      <!-- Cambia "cartaz.jpg" por el nombre real de tu archivo -->
+      <img src="cartaz.jpg" alt="Cartaz Eurovisión" />
+    </div>
+
+    <p>Agarda un intre e volve axiña. A festa está a piques de comezar! 🎶</p>
+
+    <div id="countdown-container">
+      <h2 id="countdown-title">Comeza en:</h2>
+      <div id="countdown" style="font-size: 2rem; margin: 10px 0;"></div>
+      <button id="access-button" style="padding: 10px 20px; font-size: 1rem; border: none; border-radius: 5px; background-color: white; color: #3f51b5; cursor: not-allowed;" disabled>
+        Entrar na votación
+      </button>
+    </div>
   </div>
 
-  <p>Agarda un intre e volve axiña. A festa está a piques de comezar! 🎶</p>
-
-<div id="countdown-container">
-  <h2 id="countdown-title">Comeza en:</h2>
-  <div id="countdown" style="font-size: 2rem; margin: 10px 0;"></div>
-  <button id="access-button" style="padding: 10px 20px; font-size: 1rem; border: none; border-radius: 5px; background-color: white; color: #3f51b5; cursor: not-allowed;" disabled>
-    Entrar na votación
-  </button>
-</div>
-
+  <footer>
+    <p>Web desenvolvida por Giova © 2025</p>
+  </footer>
+  
   <script>
     // Fecha objetivo: 17 de mayo de 2025 a las 21:00 (hora de Madrid)
     const targetDate = new Date('2025-05-17T21:00:00+02:00'); // +02:00 por horario de verano en Madrid
@@ -111,10 +132,5 @@
     updateCountdown();
     setInterval(updateCountdown, 1000);
   </script>
-
-  <footer>
-    <p>Web desenvolvida por Giova © 2025</p>
-  </footer>
-  
 </body>
 </html>
