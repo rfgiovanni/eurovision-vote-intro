@@ -72,25 +72,86 @@
       color: rgba(255, 255, 255, 0.6);
       /* Eliminado el position: relative que podría causar problemas */
     }
+    
+    /* Estilos nuevos para elementos de "en obras" */
+    .construction-banner {
+      background-color: rgba(0, 0, 0, 0.3);
+      color: yellow;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-weight: bold;
+      margin: 10px 0;
+      border: 2px dashed yellow;
+    }
+    
+    .emoji-row {
+      font-size: 2rem;
+      margin: 10px 0;
+    }
+    
+    .tools-animation {
+      animation: shake 1.5s infinite;
+      display: inline-block;
+    }
+    
+    @keyframes shake {
+      0% { transform: rotate(0deg); }
+      25% { transform: rotate(5deg); }
+      50% { transform: rotate(0deg); }
+      75% { transform: rotate(-5deg); }
+      100% { transform: rotate(0deg); }
+    }
+    
+    .progress-bar {
+      width: 250px;
+      height: 20px;
+      background-color: rgba(255, 255, 255, 0.3);
+      border-radius: 10px;
+      margin: 15px 0;
+      overflow: hidden;
+    }
+    
+    .progress-fill {
+      height: 100%;
+      width: 65%;
+      background-color: #4CAF50;
+      animation: progressPulse 2s infinite;
+    }
+    
+    @keyframes progressPulse {
+      0% { opacity: 0.7; }
+      50% { opacity: 1; }
+      100% { opacity: 0.7; }
+    }
   </style>
 </head>
 <body>
+  <div class="construction-banner">🚧 PÁXINA EN CONSTRUCIÓN 🚧</div>
+  
   <div class="main-content">
-    <div class="logo">🎤✨</div>
+    
+    <div class="emoji-row">
+      <span class="tools-animation">🔨</span> 
+      <span class="tools-animation" style="animation-delay: 0.2s">🔧</span> 
+      <span class="tools-animation" style="animation-delay: 0.4s">🔩</span>
+    </div>
+    
+    <div class="logo">🎤✨🇪🇺</div>
+    
     <h1>Eurovisión 2025 está ao caer!</h1>
     <p>Estamos a traballar nunha experiencia interactiva para que ti e os teus amigos votedes coma un xurado profesional. Moi pronto poderedes crear a vosa clasificación, sumar puntos en grupo e moito máis!</p>
 
-    <p>¿Xa tes a túa entrada?</p>
+    <p>¿Xa tes a túa entrada? 🎟️✨</p>
 
     <div class="preview">
       <!-- Cambia "cartaz.jpg" por el nombre real de tu archivo -->
       <img src="cartaz.jpg" alt="Cartaz Eurovisión" />
     </div>
 
-    <p>Agarda un intre e volve axiña. A festa está a piques de comezar! 🎶</p>
+    <p>Agarda un intre e volve axiña! 🎶</p>
 
     <div id="countdown-container">
-      <h2 id="countdown-title">Comeza en:</h2>
+      <h2 id="countdown-title">A festa comeza en só:</h2>
       <div id="countdown" style="font-size: 2rem; margin: 10px 0;"></div>
       <button id="access-button" style="padding: 10px 20px; font-size: 1rem; border: none; border-radius: 5px; background-color: white; color: #3f51b5; cursor: not-allowed;" disabled>
         Entrar na votación
@@ -114,7 +175,7 @@
       const diff = targetDate - now;
   
       if (diff <= 0) {
-        countdownEl.textContent = 'Xa podes entrar!';
+        countdownEl.textContent = 'START VOTING NOW!';
         buttonEl.disabled = false;
         buttonEl.style.cursor = 'pointer';
         buttonEl.onclick = () => window.location.href = 'https://rfgiovanni.github.io/eurovision_voting_web/';
