@@ -14,13 +14,12 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      min-height: 100vh; /* Cambiado height por min-height */
+      min-height: 100vh;
       text-align: center;
       padding: 1rem;
-      box-sizing: border-box; /* Asegura que el padding no afecte al tamaño total */
+      box-sizing: border-box;
     }
     
-    /* Contenedor principal para dar espacio al footer */
     .main-content {
       display: flex;
       flex-direction: column;
@@ -28,7 +27,7 @@
       align-items: center;
       flex: 1;
       width: 100%;
-      padding-top: 2rem; /* Añadir espacio arriba para los emojis */
+      padding-top: 2rem;
     }
     
     h1 {
@@ -43,7 +42,7 @@
       font-size: 3rem;
       margin-bottom: 1rem;
       animation: pulse 2s infinite;
-      padding-top: 1rem; /* Espacio adicional arriba para evitar cortes */
+      padding-top: 1rem;
     }
     .preview {
       margin: 20px 0;
@@ -70,16 +69,14 @@
       padding: 1rem 0;
       font-size: 0.9rem;
       color: rgba(255, 255, 255, 0.6);
-      /* Eliminado el position: relative que podría causar problemas */
     }
     footer small {
       display: block;
       margin-top: 0.5rem;
       font-size: 0.8rem;
       color: rgba(255, 255, 255, 0.6);
-      }
+    }
     
-    /* Estilos nuevos para elementos de "en obras" */
     .construction-banner {
       background-color: rgba(0, 0, 0, 0.3);
       color: yellow;
@@ -129,6 +126,25 @@
       50% { opacity: 1; }
       100% { opacity: 0.7; }
     }
+    
+    /* Nuevo estilo para el contenido oculto */
+    .hidden-content {
+      display: none;
+    }
+    
+    /* Estilo para el nuevo contador */
+    .reveal-countdown {
+      margin-top: 20px;
+      padding: 15px;
+      background-color: rgba(0, 0, 0, 0.2);
+      border-radius: 10px;
+      max-width: 400px;
+    }
+    
+    .reveal-countdown h3 {
+      margin-top: 0;
+      color: #ffeb3b;
+    }
   </style>
 </head>
 <body>
@@ -140,37 +156,85 @@
     
     <h1>Eurovisión 2025 está ao caer!</h1>
     <p>Estamos a traballar nunha experiencia interactiva para que ti e os teus amigos votedes coma un xurado profesional.</p>
-
-    <p>¿Xa tes a túa entrada?</p>
-
-    <div class="preview">
-      <!-- Cambia "cartaz.jpg" por el nombre real de tu archivo -->
-      <img src="cartaz.jpg" alt="Cartaz Eurovisión" />
+    
+    <!-- Nuevo contador para revelar contenido -->
+    <div class="reveal-countdown">
+      <h3>Contido completo dispoñible en:</h3>
+      <div id="reveal-timer" style="font-size: 1.5rem; margin: 10px 0;"></div>
     </div>
 
-    <p>Agarda un intre e volve axiña!</p>
+    <!-- Todo el contenido a ocultar hasta la fecha -->
+    <div id="hidden-content" class="hidden-content">
+      <p>¿Xa tes a túa entrada?</p>
 
-    <div id="countdown-container">
-      <h2 id="countdown-title">A festa comeza en:</h2>
-      <div id="countdown" style="font-size: 2rem; margin: 10px 0;"></div>
-      <button id="access-button" style="padding: 10px 20px; font-size: 1rem; border: none; border-radius: 5px; background-color: white; color: #3f51b5; cursor: not-allowed;" disabled>
-        Entrar na votación
-      </button>
+      <div class="preview">
+        <img src="cartaz.jpg" alt="Cartaz Eurovisión" />
+      </div>
+
+      <p>Agarda un intre e volve axiña!</p>
+
+      <div id="countdown-container">
+        <h2 id="countdown-title">A festa comeza en:</h2>
+        <div id="countdown" style="font-size: 2rem; margin: 10px 0;"></div>
+        <button id="access-button" style="padding: 10px 20px; font-size: 1rem; border: none; border-radius: 5px; background-color: white; color: #3f51b5; cursor: not-allowed;" disabled>
+          Entrar na votación
+        </button>
+      </div>
     </div>
   </div>
 
-  <footer>
+  <footer id="page-footer" class="hidden-content">
     <p>Web desenvolvida por Giova © 2025</p>
     <small>Financiada pola túa amizade ❤️</small>
   </footer>
   
   <script>
-    // Fecha objetivo: 17 de mayo de 2025 a las 21:00 (hora de Madrid)
+    // Fecha objetivo original: 17 de mayo de 2025 a las 21:00 (hora de Madrid)
     const targetDate = new Date('2025-05-17T21:00:00+02:00'); // +02:00 por horario de verano en Madrid
+    
+    // Nueva fecha para mostrar el contenido: 17 de mayo de 2025 a las 8:00 (hora de Madrid)
+    const revealDate = new Date('2024-05-17T08:00:00+02:00');
   
     const countdownEl = document.getElementById('countdown');
     const buttonEl = document.getElementById('access-button');
-  
+    const hiddenContentEl = document.getElementById('hidden-content');
+    const footerEl = document.getElementById('page-footer');
+    const revealTimerEl = document.getElementById('reveal-timer');
+    
+    // Función para verificar si se debe mostrar el contenido oculto
+    const checkRevealContent = () => {
+      const now = new Date();
+      
+      if (now >= revealDate) {
+        // Mostrar el contenido oculto
+        hiddenContentEl.classList.remove('hidden-content');
+        footerEl.classList.remove('hidden-content');
+        document.querySelector('.reveal-countdown').style.display = 'none';
+        
+        // Iniciar el contador original si ya es hora
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+      } else {
+        // Actualizar el contador para revelar contenido
+        updateRevealCountdown();
+        setTimeout(checkRevealContent, 1000);
+      }
+    };
+    
+    // Función para actualizar el contador de revelación
+    const updateRevealCountdown = () => {
+      const now = new Date();
+      const diff = revealDate - now;
+      
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+      
+      revealTimerEl.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    };
+    
+    // Función para actualizar el contador original (sin cambios)
     const updateCountdown = () => {
       const now = new Date();
       const diff = targetDate - now;
@@ -191,8 +255,8 @@
       countdownEl.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
     };
   
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
+    // Iniciar la verificación al cargar la página
+    window.onload = checkRevealContent;
   </script>
 </body>
 </html>
