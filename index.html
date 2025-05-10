@@ -145,6 +145,28 @@
       margin-top: 0;
       color: #ffeb3b;
     }
+    
+    /* Estilos para la sección de recursos (más discretos) */
+    .resources-section {
+      margin-top: 15px;
+      padding: 15px;
+      background-color: rgba(0, 0, 0, 0.15);
+      border-radius: 8px;
+      max-width: 400px;
+    }
+    
+    .resources-section a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      margin: 0 8px;
+      font-size: 0.95rem;
+      transition: color 0.2s ease;
+    }
+    
+    .resources-section a:hover {
+      color: white;
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
@@ -163,7 +185,20 @@
       
       <h3>Contido completo dispoñible en:</h3>
       <div id="reveal-timer" style="font-size: 1.5rem; margin: 10px 0;"></div>
+    
+        <!-- Nueva sección de recursos (más discreta) -->
+        <div class="resources-section" style="background-color: rgba(0, 0, 0, 0.15); padding: 15px; margin-top: 15px;">
+          <h4 style="color: rgba(255, 255, 255, 0.9); margin-top: 0; font-weight: normal;">Mentres agardas podes ver:</h4>
+          <div style="text-align: center; margin: 10px 0;">
+            <a href="https://eurovisionworld.com/odds/eurovision" target="_blank" style="color: rgba(255, 255, 255, 0.8); text-decoration: none; margin: 0 8px; font-size: 0.95rem;">Apostas</a> • 
+            <a href="https://www.youtube.com/watch?v=hs-ohS4O1N4&ab_channel=EurovisionSongContest" target="_blank" style="color: rgba(255, 255, 255, 0.8); text-decoration: none; margin: 0 8px; font-size: 0.95rem;">Hits 24h</a> • 
+            <a href="https://www.rtve.es/play/videos/directo/canales-lineales/play-eurovision/" target="_blank" style="color: rgba(255, 255, 255, 0.8); text-decoration: none; margin: 0 8px; font-size: 0.95rem;">RTVE Play</a>
+          </div>
+        </div>
+    
     </div>
+    
+
 
     <!-- Todo el contenido a ocultar hasta la fecha -->
     <div id="hidden-content" class="hidden-content">
@@ -183,6 +218,8 @@
           Entrar na votación
         </button>
       </div>
+      
+
     </div>
   </div>
 
